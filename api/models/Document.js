@@ -3,19 +3,14 @@ const mongoose = require("mongoose");
 const DocumentSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, unique: true },
-    desc: { type: String },
-    //img: { type: String },
-    //imgTitle: { type: String },
-    //imgSm: { type: String },
-    //trailer: { type: String },
-    //video: { type: String },
-    file: { type: String },
+    desc: { type: String, require: true },
+    file: { type: String, require: true },
     year: { type: String },
     limit: { type: Number },
-    //genre: { type: String },
-    classify: { type: String },
+    classify: { type: String, require: true },
     isSeries: { type: Boolean, default: false },
-    uploadby: { type: String, default: "anonymous"}
+    uploadby: { type: String, default: "anonymous"},
+    author: { type: String, require: true}
   },
   { timestamps: true }
 );
