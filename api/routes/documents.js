@@ -4,6 +4,7 @@ const {
     verifyToken,
     verifyTokenAndAuthorization,
     verifyTokenAndAdmin,
+    verifyAuthor
   } = require("./verifyToken");
   
 
@@ -21,7 +22,7 @@ router.post("/", verifyToken, async (req, res) => {
 
 //UPDATE
 
-router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
+router.put("/:id", verifyAuthor, async (req, res) => {
     try {
       const updatedDocument = await Document.findByIdAndUpdate(
         req.params.id,
@@ -38,7 +39,7 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
 
 //DELETE
 
-router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
+router.delete("/:id", verifyAuthor, async (req, res) => {
     try {
       await Document.findByIdAndDelete(req.params.id);
       res.status(200).json("The document has been deleted...");
@@ -82,7 +83,6 @@ router.get("/random", verifyToken, async (req, res) => {
 });
 
 //GET ALL
-
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
     try {
       const documents = await Document.find();
