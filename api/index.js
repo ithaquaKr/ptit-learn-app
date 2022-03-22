@@ -1,12 +1,16 @@
 const express = require("express");
-const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
+
+///////// Router
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const documentRoute = require("./routes/documents");
 const listRoute = require("./routes/lists");
+
+////////////////
+const app = express();
 
 const connectDB = async () => {
 	try {
