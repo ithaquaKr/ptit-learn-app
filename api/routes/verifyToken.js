@@ -1,4 +1,7 @@
 const jwt = require("jsonwebtoken");
+const User = require("../models/User");
+const Document = require("../models/Document")
+
 
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers.token;
@@ -15,8 +18,9 @@ const verifyToken = (req, res, next) => {
 };
 
 const verifyTokenAndAuthorization = (req, res, next) => {
-  verifyToken(req, res, () => {
-    if (req.user.id === req.params.id || req.user.isAdmin) {
+  verifyToken(req, res, async () => {
+    FindUser = await User.findOne({ _id: req.user.id });
+    if (FindUser !== null || req.user.isAdmin) {
       next();
     } else {
       res.status(403).json("You are not alowed to do that!");
@@ -34,8 +38,30 @@ const verifyTokenAndAdmin = (req, res, next) => {
   });
 };
 
+const verifyAuthor = (req, res, next) => {
+  verifyToken(req, res, async () => {
+    FindUser = await User.findOne({ _id: req.user.id });
+    
+    // Check user
+    if (FindUser !== null || req.user.isAdmin) {
+      docs = await Document.findOne({ author: req.user.id, _id: req.params.id });
+
+      // Check Document with user id
+      if (docs === null) {
+        res.status(403).json("You are not Author/Admin to do that!");
+      } else {
+        next();
+      }
+    } else {
+      res.status(403).json("You are not alowed to do that!");
+    }
+  });
+};
+
+
 module.exports = {
   verifyToken,
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
+  verifyAuthor
 };
