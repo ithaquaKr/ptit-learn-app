@@ -32,7 +32,7 @@ app.use("/api/users", userRoute);
 app.use("/api/documents", documentRoute);
 app.use("/api/lists", listRoute);
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || 8800, () => {
   console.log("Backend server is running!");
 });
 

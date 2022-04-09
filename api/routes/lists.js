@@ -40,7 +40,7 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
 
 //GET
 
-router.get("/", verifyTokenAndAdmin, async (req, res) => {
+router.get("/", verifyTokenAndAuthorization, async (req, res) => {
   const typeQuery = req.query.type;
   const genreQuery = req.query.genre;
   let list = [];
