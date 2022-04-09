@@ -3,7 +3,7 @@ import Home from "./pages/home/Home";
 import Register from "./pages/register/Register";
 import Watch from "./pages/watch/Watch";
 import Login from "./pages/login/Login";
-
+import Account from "./pages/account/Account";
 
 import {
   BrowserRouter as Router,
@@ -12,7 +12,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "./authContext/AuthContext";
+import { AuthContext } from "./context/authContext/AuthContext";
 
 const App = () => {
   const { user } = useContext(AuthContext);
@@ -36,6 +36,9 @@ const App = () => {
             </Route>
             <Route path="/watch">
               <Watch />
+            </Route>
+            <Route path="/account">
+              <Account />
             </Route>
           </>
         )}

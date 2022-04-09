@@ -1,12 +1,12 @@
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import "./home.scss";
+import "./account.scss";
 
-const Home = () => {
+const Account = () => {
   return (
-    <div className="home">
+    <div className="account">
       <Sidebar />
-      <div className="homeContainer">
+      <div className="accountContainer">
         <Navbar />
         {/* <div className="widgets">
           <Widget type="user" />
@@ -27,4 +27,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Account;

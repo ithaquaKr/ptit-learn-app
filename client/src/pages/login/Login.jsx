@@ -1,21 +1,21 @@
 import { useContext, useState } from "react";
-import { login } from "../../authContext/apiCalls";
-import { AuthContext } from "../../authContext/AuthContext";
+import { login } from "../../context/authContext/apiCalls";
+import { AuthContext } from "../../context/authContext/AuthContext";
 import { Link } from "react-router-dom";
 import PasswordIcon from '@mui/icons-material/Password';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import "./login.scss";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { dispatch } = useContext(AuthContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    login({ email, password }, dispatch);
+      login({ username, password }, dispatch);
   };
-
+  
   return (
     <>
       <div className="container">
@@ -25,7 +25,7 @@ export default function Login() {
               <h2 class="title">Đăng nhập</h2>
               <div class="input-field">
                 <AccountCircleIcon className="icon"/>
-                <input type="text" placeholder="Tên đăng nhập" onChange={(e) => setEmail(e.target.value)} />
+                <input type="text" placeholder="Tên đăng nhập" onChange={(e) => setUsername(e.target.value)} />
               </div>
               <div class="input-field">
                 <PasswordIcon className="icon"/>
