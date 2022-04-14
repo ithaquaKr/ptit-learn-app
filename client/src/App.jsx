@@ -4,7 +4,8 @@ import Register from "./pages/register/Register";
 import Watch from "./pages/watch/Watch";
 import Login from "./pages/login/Login";
 import Account from "./pages/account/Account";
-
+import NewDocument from "./pages/newDocument/NewDocument";
+import DocumentList from "./pages/documentList/DocumentList";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,6 +14,7 @@ import {
 } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext/AuthContext";
+
 
 const App = () => {
   const { user } = useContext(AuthContext);
@@ -40,6 +42,13 @@ const App = () => {
             <Route path="/account">
               <Account />
             </Route>
+            <Route path="/newDocument">
+              <NewDocument />
+            </Route>
+            <Route path="/documents">
+              <DocumentList />
+            </Route>
+            
           </>
         )}
       </Switch>

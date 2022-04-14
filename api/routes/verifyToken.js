@@ -44,7 +44,7 @@ const verifyAuthor = (req, res, next) => {
     
     // Check user
     if (FindUser !== null || req.user.isAdmin) {
-      docs = await Document.findOne({ author: req.user.id, _id: req.params.id });
+      docs = await Document.findOne({ uploadby: req.user.id, _id: req.params.id });
 
       // Check Document with user id
       if (docs === null) {

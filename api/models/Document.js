@@ -9,7 +9,7 @@ const DocumentSchema = new mongoose.Schema(
     limit: { type: Number },
     classify: { type: String, require: true },
     isSeries: { type: Boolean, default: false },
-    uploadby: { type: String, default: "anonymous"},
+    uploadby: { type: String, require: true},
     author: { type: String, require: true}
   },
   { timestamps: true }

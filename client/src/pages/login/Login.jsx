@@ -21,35 +21,35 @@ export default function Login() {
       <div className="container">
         <div className="forms-container">
           <div className="signin-signup">
-            <form class="sign-in-form">
-              <h2 class="title">Đăng nhập</h2>
-              <div class="input-field">
+            <form className="sign-in-form">
+              <h2 className="title">Đăng nhập</h2>
+              <div className="input-field">
                 <AccountCircleIcon className="icon"/>
                 <input type="text" placeholder="Tên đăng nhập" onChange={(e) => setUsername(e.target.value)} />
               </div>
-              <div class="input-field">
+              <div className="input-field">
                 <PasswordIcon className="icon"/>
                 <input type="password" placeholder="Mật khẩu" onChange={(e) => setPassword(e.target.value)} />
               </div>
-              <input type="submit" value="Đăng nhập" class="btn solid" onClick={handleLogin} />
+              <input type="submit" value="Đăng nhập" className="btn solid" onClick={handleLogin} />
             </form>
           </div>
         </div>
       </div>
-      <div class="panels-container">
-          <div class="panel left-panel">
-            <div class="content">
+      <div className="panels-container">
+          <div className="panel left-panel">
+            <div className="content">
               <h3>Chưa có tài khoản?</h3>
               <p>
                 Vậy thì còn chần chờ gì nữa mà không đăng ký ngay để có những trải nghiệm tuyệt vời cùng PTIT Learn
               </p>
               <Link to="/register" className="link" >
-                <button class="btn transparent" id="sign-up-btn" >
+                <button className="btn transparent" id="sign-up-btn" >
                   Đăng kí ngay
                 </button>
               </Link>  
             </div>
-            <img src="/images/bg-login.svg" class="image" alt="" />
+            <img src="/images/bg-login.svg" className="image" alt="" />
           </div>
         </div>
     </>

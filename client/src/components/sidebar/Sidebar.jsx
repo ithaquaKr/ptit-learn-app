@@ -50,7 +50,7 @@ const Sidebar = () => {
               <span>Users</span>
             </li>
           </Link>
-          <Link to="/mydocument" style={{ textDecoration: "none" }}>
+          <Link to="/documents" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
               <span>Tài liệu của tôi</span>
