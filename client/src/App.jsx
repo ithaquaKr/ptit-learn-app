@@ -6,6 +6,7 @@ import Login from "./pages/login/Login";
 import Account from "./pages/account/Account";
 import NewDocument from "./pages/newDocument/NewDocument";
 import DocumentList from "./pages/documentList/DocumentList";
+import Document from "./pages/document/Document";
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,7 +15,8 @@ import {
 } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext/AuthContext";
-
+import Sidebar from "./components/sidebar/Sidebar";
+import Navbar from "./components/navbar/Navbar";
 
 const App = () => {
   const { user } = useContext(AuthContext);
@@ -30,11 +32,11 @@ const App = () => {
         <Route path="/login">{!user ? <Login /> : <Redirect to="/" />}</Route>
         {user && (
           <>
-            <Route path="/movies">
-              <Home type="movie" />
-            </Route>
-            <Route path="/series">
-              <Home type="series" />
+          <Navbar/>
+          <div className="main-container">
+            <Sidebar/>
+            <Route exact path="/">
+              <Home/>
             </Route>
             <Route path="/watch">
               <Watch />
@@ -48,7 +50,10 @@ const App = () => {
             <Route path="/documents">
               <DocumentList />
             </Route>
-            
+            <Route path="/documents/:documentId">
+              <Document />
+            </Route>
+          </div>
           </>
         )}
       </Switch>

@@ -3,8 +3,8 @@ import "./newDocument.scss";
 import storage from "../../firebase";
 import { createDocument } from "../../context/documentContext/apiCalls";
 import { DocumentContext } from "../../context/documentContext/DocumentContext";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Navbar from "../../components/navbar/Navbar";
+// import Sidebar from "../../components/sidebar/Sidebar";
+// import Navbar from "../../components/navbar/Navbar";
 export default function NewDocument() {
   const [document, setDocument] = useState(null);
   const [file, setFile] = useState(null);
@@ -60,16 +60,12 @@ export default function NewDocument() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // setDocument({ ...document, [e.target.uploadby]: localStorage.getItem("_id") });
+    setDocument({ ...document, [e.target.uploadby]: localStorage.getItem("_id") });
     createDocument(document, dispatch);
   };
 
   return (
     <>
-    <div className="newDocument">
-    <Sidebar />
-      <div className="newDocument-container">
-      <Navbar />
       <div className="newProduct">
         <h1 className="addProductTitle">New Document</h1>   
         <form className="addProductForm">
@@ -145,9 +141,7 @@ export default function NewDocument() {
             />
           </div>
           {uploaded === 1 ? (
-            <button className="addProductButton"  
-            onClick={handleSubmit}
-            >
+            <button className="addProductButton"  onClick={handleSubmit}>
               Create
             </button>
           ) : (
@@ -157,8 +151,6 @@ export default function NewDocument() {
           )}
         </form>
         </div>
-      </div>
-    </div>
     </>
   );
 }

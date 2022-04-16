@@ -32,10 +32,10 @@ export default function DocumentList() {
         );
       },
     },
-    { field: "genre", headerName: "Genre", width: 120 },
-    { field: "year", headerName: "year", width: 120 },
-    { field: "limit", headerName: "limit", width: 120 },
-    { field: "isSeries", headerName: "isSeries", width: 120 },
+    // { field: "genre", headerName: "Genre", width: 120 },
+    // { field: "year", headerName: "year", width: 120 },
+    // { field: "limit", headerName: "limit", width: 120 },
+    // { field: "isSeries", headerName: "isSeries", width: 120 },
 
     {
       field: "action",
@@ -45,7 +45,7 @@ export default function DocumentList() {
         return (
           <>
             <Link
-              to={{ pathname: "/document/" + params.row._id, document: params.row }}
+              to={{ pathname: "/documents/" + params.row._id, document: params.row }}
             >
               <button className="documentListEdit">Edit</button>
             </Link>
@@ -63,11 +63,11 @@ export default function DocumentList() {
     <div className="documentList">
       <GridViewIcon
         rows={documents}
-        disableSelectionOnClick
+        disableselectiononclick
         columns={columns}
+        getRowId={(row) => row._id}
         pageSize={8}
-        checkboxSelection
-        getRowId={(r) => r._id}
+        checkboxselection
       />
     </div>
   );

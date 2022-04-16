@@ -83,7 +83,7 @@ router.get("/random", verifyToken, async (req, res) => {
 });
 
 //GET ALL
-router.get("/", verifyTokenAndAdmin, async (req, res) => {
+router.get("/", verifyToken, async (req, res) => {
     try {
       const documents = await Document.find();
       res.status(200).json(documents.reverse());
