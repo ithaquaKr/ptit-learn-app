@@ -1,0 +1,51 @@
+// .read {
+//   flex: 4;
+//   .back {
+//     display: flex;
+//     align-items: center;
+//     position: absolute;
+//     top: 10px;
+//     left: 10px;
+//     color: white;
+//     cursor: pointer;
+//     z-index: 2;
+//   }
+//   .view {
+//     width: 90%;
+//     height: 100%;
+//     margin-left: 15px;
+//     padding: 40;
+//   }
+// }
+
+.read-container{
+  flex: 4;
+  .read-top{
+    display: flex;
+    .back-icon{
+      align-self: center;
+      color: #11101d;
+      cursor: pointer;
+      margin: 15px;
+    }
+    .read-title{
+      color: #11101d;
+      font-size: 18px;
+      font-weight: 500;
+      margin: 18px;
+    }
+  }
+
+  .read-document{
+    display: flex;
+    height: 850px;
+    margin-left: 65px;
+    // .view{
+    //   width: 90%;
+    //   height: 100%;
+    //   margin-left: 15px;
+    //   padding: 40;
+    // }
+  }
+
+}

@@ -3,18 +3,24 @@ import "./newDocument.scss";
 import storage from "../../firebase";
 import { createDocument } from "../../context/documentContext/apiCalls";
 import { DocumentContext } from "../../context/documentContext/DocumentContext";
-// import Sidebar from "../../components/sidebar/Sidebar";
-// import Navbar from "../../components/navbar/Navbar";
+
+import Processbutton from "../../components/processbutton/Processbutton"
+
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
+import { Link, useHistory } from "react-router-dom";
+
 export default function NewDocument() {
   const [document, setDocument] = useState(null);
   const [file, setFile] = useState(null);
-  // const [documentTitle, setDocumentTitle] = useState(null);
-  // const [imgSm, setImgSm] = useState(null);
-  // const [trailer, setTrailer] = useState(null);
-  // const [video, setVideo] = useState(null);
   const [uploaded, setUploaded] = useState(0);
 
+  const history = useHistory();
+
   const { dispatch } = useContext(DocumentContext);
+
+  const verify = JSON.parse(window.localStorage.getItem('user'))._id;
+  const uploadby = JSON.parse(window.localStorage.getItem('user')).username;
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -51,23 +57,29 @@ export default function NewDocument() {
     e.preventDefault();
     upload([
       { file: file, label: "file" },
-      // { file: documentTitle, label: "documentTitle" },
-    //   { file: imgSm, label: "imgSm" },
-    //   { file: trailer, label: "trailer" },
-    //   { file: video, label: "video" },
     ]);
+    document.uploadby = uploadby;
+    document.verify = verify;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setDocument({ ...document, [e.target.uploadby]: localStorage.getItem("_id") });
-    createDocument(document, dispatch);
+    try {
+      createDocument(document, dispatch);
+      history.push("/mydocuments");
+    } catch (err) {
+    }
   };
 
   return (
-    <>
       <div className="newProduct">
+        <div className="newProduct-top">
+          <Link to="/mydocuments"  className="back-icon">
+            <ArrowBackIosNewIcon/>
+          </Link>
         <h1 className="addProductTitle">New Document</h1>   
+        </div>
+        
         <form className="addProductForm">
           <div className="addProductItem">
             <label>Title</label>
@@ -96,15 +108,24 @@ export default function NewDocument() {
               onChange={handleChange}
             />
           </div>
+
+
           <div className="addProductItem">
             <label>Classify</label>
-            <input
-              type="text"
-              placeholder="vd:môn Đại cương"
-              name="classify"
+            <select name = "classify" id="classify" 
               onChange={handleChange}
-            />
+            >
+              <option value="baigiang"> Bài giảng </option>
+              <option value="baibao"> Bài báo -  Tạp chí </option>
+              <option value="chuyennganh"> E-Book Chuyên ngành </option>
+              <option value="nckh"> Đề tài nghiên cứu khoa học </option>
+              <option value="luan"> Luận án Tiến sỹ - Luận văn Thạc sỹ </option>
+              <option value="sach"> Sách </option>
+              <option value="truyen"> Truyện - Tiểu thuyết </option>
+
+            </select>
           </div>
+
           <div className="addProductItem">
             <label>Author</label>
             <input
@@ -114,24 +135,8 @@ export default function NewDocument() {
               onChange={handleChange}
             />
           </div>
-          <div className="addProductItem">
-            <label>Limit</label>
-            <input
-              type="number"
-              placeholder="limit"
-              name="limit"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="addProductItem">
-            <label>Is Series?</label>
-            <select name="isSeries" id="isSeries" 
-            onChange={handleChange}
-            >
-              <option value="false">No</option>
-              <option value="true">Yes</option>
-            </select>
-          </div>
+  
+    
           <div className="addProductItem">
             <label>File</label>
             <input
@@ -141,16 +146,15 @@ export default function NewDocument() {
             />
           </div>
           {uploaded === 1 ? (
-            <button className="addProductButton"  onClick={handleSubmit}>
-              Create
+            <button className="addCreateButton" onClick={handleSubmit}>
+              <DoneAllIcon />
             </button>
           ) : (
-            <button className="addProductButton" onClick={handleUpload} >
-              Upload
-            </button>
+            <div className="addUploadButton" onClick={handleUpload}>
+              <Processbutton/>
+            </div>
           )}
-        </form>
+          </form>
         </div>
-    </>
   );
 }

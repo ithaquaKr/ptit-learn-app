@@ -1,12 +1,14 @@
 import "./app.scss";
 import Home from "./pages/home/Home";
-import Register from "./pages/register/Register";
-import Watch from "./pages/watch/Watch";
-import Login from "./pages/login/Login";
+// import Register from "./pages/backup/register/Register";
+import Read from "./pages/read/Read";
+// import Login from "./pages/login/Login";
 import Account from "./pages/account/Account";
 import NewDocument from "./pages/newDocument/NewDocument";
-import DocumentList from "./pages/documentList/DocumentList";
+import MydocumentList from "./pages/mydocumentList/MydocumentList";
 import Document from "./pages/document/Document";
+import Landingpage from "./pages/landingpage/Landingpage";
+import Library from "./pages/library/Library";
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,30 +18,35 @@ import {
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext/AuthContext";
 import Sidebar from "./components/sidebar/Sidebar";
-import Navbar from "./components/navbar/Navbar";
-
+import Auth from "./pages/auth/Auth";
+// import Navbar from "./components/navbar/Navbar";
 const App = () => {
   const { user } = useContext(AuthContext);
+
+
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          {user ? <Home /> : <Redirect to="/login" />}
+          {user ? <Landingpage /> : <Redirect to="/auth" />}
         </Route>
-        <Route path="/register">
-          {!user ? <Register /> : <Redirect to="/" />}
+        {/* <Route path="/register">
+          {!user ? <Register /> : <Redirect to="/login" />}
         </Route>
-        <Route path="/login">{!user ? <Login /> : <Redirect to="/" />}</Route>
+        <Route path="/login">{!user ? <Login /> : <Redirect to="/home" />}</Route>
+         */}
+        <Route path="/auth">{!user ? <Auth /> : <Redirect to="/home" />}</Route>
+       
         {user && (
           <>
-          <Navbar/>
+          {/* <Navbar/> */}
+          <Sidebar/>
           <div className="main-container">
-            <Sidebar/>
-            <Route exact path="/">
+            <Route path="/home">
               <Home/>
             </Route>
-            <Route path="/watch">
-              <Watch />
+            <Route path="/read/:documentId">
+              <Read />
             </Route>
             <Route path="/account">
               <Account />
@@ -47,10 +54,13 @@ const App = () => {
             <Route path="/newDocument">
               <NewDocument />
             </Route>
-            <Route path="/documents">
-              <DocumentList />
+            <Route path="/mydocuments">
+              <MydocumentList />
             </Route>
-            <Route path="/documents/:documentId">
+            <Route path="/library">
+              <Library />
+            </Route>
+            <Route path="/mydocuments/:documentId">
               <Document />
             </Route>
           </div>

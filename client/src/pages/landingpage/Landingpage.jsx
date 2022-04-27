@@ -1,13 +1,16 @@
 // import Sidebar from "../../components/sidebar/Sidebar";
 // import Navbar from "../../components/navbar/Navbar";
-import "./home.scss";
+import "./landingpage.scss";
 
-const Home = () => {
+const Landingpage = () => {
  
   return (
     // <Sidebar/>,
-    <div className="home">
-      <div className="homeContainer">
+    <div className="Landing-page">
+      <div className="Landing-Container">
+        <h1>
+          Landingpage
+        </h1>
         {/* <div className="widgets">
           <Widget type="user" />
           <Widget type="order" />
@@ -27,4 +30,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Landingpage;

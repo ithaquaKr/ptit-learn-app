@@ -21,7 +21,6 @@ const connectDB = async () => {
 		console.log('Database Connection Successfull!')
 	} catch (error) {
 		console.log(error.message)
-		process.exit(1)
 	}
 };
 connectDB();
@@ -33,6 +32,6 @@ app.use("/api/documents", documentRoute);
 app.use("/api/lists", listRoute);
 
 app.listen(process.env.PORT || 8800, () => {
-  console.log("Backend server is running!");
+  console.log(`Backend server is running on PORT: ${8800}!`);
 });
 

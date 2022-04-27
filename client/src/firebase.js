@@ -1,5 +1,6 @@
 import firebase from "firebase";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyAEjN1kfzJUvl1p-eRAZ1JdJNn_DNYrwb8",
   authDomain: "ptit-learn-app.firebaseapp.com",
