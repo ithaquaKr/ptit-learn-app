@@ -6,10 +6,9 @@ const DocumentSchema = new mongoose.Schema(
     desc: { type: String, require: true },
     file: { type: String, require: true },
     year: { type: String },
-    limit: { type: Number },
     classify: { type: String, require: true },
-    isSeries: { type: Boolean, default: false },
-    uploadby: { type: String, default: "anonymous"},
+    uploadby: { type: String },
+    verify: { type: String },
     author: { type: String, require: true}
   },
   { timestamps: true }

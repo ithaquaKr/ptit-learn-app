@@ -7,6 +7,7 @@ const {
 
 const router = require("express").Router();
 const CryptoJS = require("crypto-js");
+const { findOne } = require("../models/User");
 //UPDATE
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   if (req.body.password) {
