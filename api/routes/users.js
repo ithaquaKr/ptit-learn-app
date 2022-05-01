@@ -31,38 +31,6 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   }
 });
 
-// //CHANGE PASSWORD ???
-// router.put("/:id/changepassword", verifyTokenAndAuthorization, async (req, res) => {
-
-//     req.body.password = CryptoJS.AES.encrypt(
-//       req.body.password,
-//       process.env.PASS_SEC
-//     ).toString();
-
-//     const hashedPassword = CryptoJS.AES.decrypt(
-//       req.body.oldpassword,
-//       process.env.PASS_SEC
-//     );
-//     const OriginalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
-//     findPass = await User.findOne({_id: req.params.id, password: OriginalPassword});
-//     // if(1){
-//       try {
-//         const updatedUser = await User.findByIdAndUpdate(
-//           req.params.id,
-//           {
-//             $set: req.body.password,
-//           },
-//           { new: true }
-//         );
-//         res.status(200).json(updatedUser);
-//       } catch (err) {
-//         res.status(500).json(err);
-//       }
-//     // } else {
-//     //   res.status(403).json("Old Password Incorrect!");
-//     // }
-// });
-
 //DELETE
 router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {

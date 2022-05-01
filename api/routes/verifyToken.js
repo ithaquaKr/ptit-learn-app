@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-const Document = require("../models/Document")
+const Document = require("../models/Document");
+const Todo = require("../models/Todo");
 
 
 const verifyToken = (req, res, next) => {
@@ -44,10 +45,30 @@ const verifyAuthor = (req, res, next) => {
     
     // Check user
     if (FindUser !== null || req.user.isAdmin) {
-      docs = await Document.findOne({ verify: req.user.id, _id: req.params.id });
+      const docs = await Document.findOne({ verify: req.user.id, _id: req.params.id });
 
       // Check Document with user id
       if (docs === null) {
+        res.status(403).json("You are not Author/Admin to do that!");
+      } else {
+        next();
+      }
+    } else {
+      res.status(403).json("You are not alowed to do that!");
+    }
+  });
+};
+
+const verifyTodoAuthor = (req, res, next) => {
+  verifyToken(req, res, async () => {
+    FindUser = await User.findOne({ _id: req.user.id });
+    
+    // Check user
+    if (FindUser !== null || req.user.isAdmin) {
+      const todos = await Todo.findOne({ verify: req.user.id, _id: req.params.id });
+
+      // Check Document with user id
+      if (todos === null) {
         res.status(403).json("You are not Author/Admin to do that!");
       } else {
         next();
@@ -63,5 +84,6 @@ module.exports = {
   verifyToken,
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
-  verifyAuthor
+  verifyAuthor,
+  verifyTodoAuthor
 };

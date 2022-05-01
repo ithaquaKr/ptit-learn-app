@@ -28,9 +28,9 @@ export const updateDocumentStart = () => ({
   type: "UPDATE_DOCUMENT_START",
 });
 
-export const updateDocumentSuccess = (document) => ({
+export const updateDocumentSuccess = (id, document) => ({
   type: "UPDATE_DOCUMENT_SUCCESS",
-  payload: document,
+  payload: document,id
 });
 
 export const updateDocumentFailure = () => ({

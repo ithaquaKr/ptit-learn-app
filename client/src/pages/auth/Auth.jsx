@@ -5,11 +5,11 @@ import { useHistory } from "react-router-dom";
 
 import axios from "axios";
 
+
 //Import icon
 import LockIcon from '@mui/icons-material/Lock';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import EmailIcon from '@mui/icons-material/Email';
-
 
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
@@ -24,7 +24,7 @@ export default function Auth() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-
+  const [avatar, setAvatar] = useState("");
   const { dispatch, error, isFetching } = useContext(AuthContext);
   
   const handleLogin = (e) => {
@@ -37,21 +37,24 @@ export default function Auth() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const usernameRef = useRef();
-  const avatar = "/images/default-ava.png";
+  const avatarRef = "/images/default-ava.png";
 
   const handleFinish = async (e) => {
     e.preventDefault();
     setEmail(emailRef.current.value);
     setPassword(passwordRef.current.value);
     setUsername(usernameRef.current.value);
-    
-    try {
-      await axios.post("auth/register", { email,username, password,avatar });
-      history.push("/auth");
-    } catch (err) {
+    setAvatar(avatarRef);
+    if(email!==""){
+      try {
+        await axios.post("auth/register", { email,username, password, avatar });
+        history.push("/");
+      } catch (err) {
+      }
     }
   };
 
+  //Animation
   useEffect(() => {
     const sign_in_btn = document.querySelector("#sign-in-btn");
     const sign_up_btn = document.querySelector("#sign-up-btn");
@@ -63,9 +66,9 @@ export default function Auth() {
 
     sign_in_btn.addEventListener("click", () => {
     container.classList.remove("sign-up-mode");
-});
-
+    });
   });
+
   return (
     <>
       <div className="container">
@@ -86,6 +89,7 @@ export default function Auth() {
               <div className="input-field">
                 <LockIcon className="icon"/>
                 <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+ 
               </div>
               <input type="submit" value="Sign In" className="btn solid" onClick={handleLogin} />
                 {error &&  <Stack sx={{ width: '45%' }}>
@@ -108,6 +112,7 @@ export default function Auth() {
             <div className="input-field">
               <LockIcon className="icon"/>
               <input type="password" placeholder="Password" ref={passwordRef} />
+          
             </div>
             <input type="submit" className="btn" value="Sign Up" onClick={handleFinish} />
           </form>

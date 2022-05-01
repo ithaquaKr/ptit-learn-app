@@ -100,7 +100,7 @@ form.sign-in-form {
   height: 55px;
   border-radius: 55px;
   display: grid;
-  grid-template-columns: 15% 85%;
+  grid-template-columns: 15% 70% 15%;
   padding: 0 0.4rem;
   position: relative;
 }
@@ -111,7 +111,6 @@ form.sign-in-form {
     color: #11101d;
     transition: 0.5s;
   }
-
 
 .input-field input {
   background: none;

@@ -43,21 +43,26 @@ export default function Processbutton() {
         <Fab
           aria-label="save"
           color="primary"
-          sx={buttonSx}
+          sx={{
+            buttonSx,
+            height: 38,
+            width: 38,
+            padding: 0
+          }}
           onClick={handleButtonClick}
         >
           {success ? <CheckIcon /> : <SaveIcon />}
         </Fab>
         {loading && (
           <CircularProgress
-            size={68}
-            sx={{
-              color: green[500],
-              position: 'absolute',
-              top: -6,
-              left: -6,
-              zIndex: 1,
-            }}
+          size={45}
+          sx={{
+            color: green[500],
+            position: "absolute",
+            top: -3,
+            left: -3,
+            zIndex: 27
+          }}
           />
         )}
       </Box>

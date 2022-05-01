@@ -3,6 +3,9 @@ import {
   createDocumentFailure,
   createDocumentStart,
   createDocumentSuccess,
+  updateDocumentFailure,
+  updateDocumentStart,
+  updateDocumentSuccess,
   deleteDocumentFailure,
   deleteDocumentStart,
   deleteDocumentSuccess,
@@ -24,6 +27,21 @@ export const getDocuments = async (dispatch) => {
     dispatch(getDocumentsFailure());
   }
 };
+//Get my documents
+export const getMyDocuments = async (dispatch) => {
+  dispatch(getDocumentsStart());
+  try {
+    const res = await axios.get("/documents/mydocuments", {
+      headers: {
+        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+      },
+    });
+    dispatch(getDocumentsSuccess(res.data));
+  } catch (err) {
+    dispatch(getDocumentsFailure());
+  }
+};
+
 
 //create
 export const createDocument = async (document, dispatch) => {
@@ -39,6 +57,22 @@ export const createDocument = async (document, dispatch) => {
     dispatch(createDocumentFailure());
   }
 };
+
+//update
+export const updateDocument = async (id, document, dispatch) => {
+  dispatch(updateDocumentStart());
+  try {
+    const res = await axios.put("/documents/" + id, document, {
+      headers: {
+        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+      },
+    });
+    dispatch(updateDocumentSuccess(res.data));
+  } catch (err) {
+    dispatch(updateDocumentFailure());
+  }
+};
+
 
 //delete
 export const deleteDocument = async (id, dispatch) => {
