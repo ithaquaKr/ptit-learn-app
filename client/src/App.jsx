@@ -1,13 +1,16 @@
 import "./app.scss";
+
+import Auth from "./pages/auth/Auth";
 import Home from "./pages/home/Home";
-// import Read from "./pages/read/Read";
 import Account from "./pages/account/Account";
-// import NewDocument from "./pages/newDocument/NewDocument";
 import MydocumentList from "./pages/mydocumentList/MydocumentList";
-// import Document from "./pages/document/Document";
 import Landingpage from "./pages/landingpage/Landingpage";
 import Library from "./pages/library/Library";
 import Aboutus from "./pages/aboutus/Aboutus";
+import Todo from "./pages/todo/Todo";
+
+import Sidebar from "./components/sidebar/Sidebar";
+
 
 import {
   BrowserRouter as Router,
@@ -15,10 +18,10 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext/AuthContext";
-import Sidebar from "./components/sidebar/Sidebar";
-import Auth from "./pages/auth/Auth";
+
 const App = () => {
   const { user } = useContext(AuthContext);
 
@@ -37,17 +40,17 @@ const App = () => {
             <Route path="/home">
               <Home/>
             </Route>
-            {/* <Route path="/read/:documentId">
-              <Read />
-            </Route> */}
-            <Route path="/account">
-              <Account />
-            </Route>
             <Route path="/mydocuments">
               <MydocumentList />
             </Route>
             <Route path="/library">
               <Library />
+            </Route>
+            <Route path="/todo">
+              <Todo />
+            </Route>
+            <Route path="/account">
+              <Account />
             </Route>
             <Route path="/aboutus">
               <Aboutus />

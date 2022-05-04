@@ -12,28 +12,33 @@
       .aboutus-top {
         display: flex;
         position: relative;
-        width: 24%;
+        width: 28%;
         padding: 6px;
         margin: 5%;
+        margin-left: 35%;
         background-color: #1d1b31;
         border-radius: 45px;
         justify-content: baseline;
-        .aboutus-img {
-          width: 28px;
-          height: 28px;
-          border-radius: 50%;
-          object-fit: cover;
-          align-self: center;
-          margin-left: 5px;
-          margin-right: 15px;
-        }
-          
         .aboutus-title {
           color: #fff;
           font-weight: 500;
-          font-size: 20px;
+          font-size: 40px;
+          margin-left: 27%;
+          justify-content: baseline;
+
         }
     
+      }
+      .aboutus-bottom{
+        .member-list{
+          display: flex;
+          flex-direction: column;
+        }
+        .aboutus-bg{
+          width: 100%;
+          height: 100%;
+        }
+
       }
     }
   }

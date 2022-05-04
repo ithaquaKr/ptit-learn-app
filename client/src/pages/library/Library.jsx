@@ -82,8 +82,9 @@ export default function Library() {
               rows={documents}
               disableSelectionOnClick
               columns={columns}
-              pageSize={5}
+              pageSize={15}
               // checkboxSelection 
+              rowsPerPageOptions={[5,10,15]}
               getRowId={(e) => e._id}
               // rowHeight={140} 
               rowHeight={80} 

@@ -1,74 +1,74 @@
-const ListReducer = (state, action) => {
+const TodoReducer = (state, action) => {
   switch (action.type) {
-    case "GET_LISTS_START":
+    case "GET_TODOS_START":
       return {
-        lists: [],
+        todos: [],
         isFetching: true,
         error: false,
       };
-    case "GET_LISTS_SUCCESS":
+    case "GET_TODOS_SUCCESS":
       return {
-        lists: action.payload,
+        todos: action.payload,
         isFetching: false,
         error: false,
       };
-    case "GET_LISTS_FAILURE":
+    case "GET_TODOS_FAILURE":
       return {
-        lists: [],
+        todos: [],
         isFetching: false,
         error: true,
       };
-    case "CREATE_LIST_START":
+    case "CREATE_TODO_START":
       return {
         ...state,
         isFetching: true,
         error: false,
       };
-    case "CREATE_LIST_SUCCESS":
+    case "CREATE_TODO_SUCCESS":
       return {
-        lists: [...state.lists, action.payload],
+        todos: [...state.todos, action.payload],
         isFetching: false,
         error: false,
       };
-    case "CREATE_LIST_FAILURE":
+    case "CREATE_TODO_FAILURE":
       return {
         ...state,
         isFetching: false,
         error: true,
       };
-    case "UPLOAD_LIST_START":
+    case "UPLOAD_TODO_START":
       return {
         ...state,
         isFetching: true,
         error: false,
       };
-    case "UPLOAD_LIST_SUCCESS":
+    case "UPLOAD_TODO_SUCCESS":
       return {
-        lists: state.lists.map(
-          (list) => list._id === action.payload._id && action.payload
+        todos: state.todo.map(
+          (todo) => todo._id === action.payload._id && action.payload
         ),
         isFetching: false,
         error: false,
       };
-    case "UPLOAD_LIST_FAILURE":
+    case "UPLOAD_TODO_FAILURE":
       return {
         ...state,
         isFetching: false,
         error: true,
       };
-    case "DELETE_LIST_START":
+    case "DELETE_TODO_START":
       return {
         ...state,
         isFetching: true,
         error: false,
       };
-    case "DELETE_LIST_SUCCESS":
+    case "DELETE_TODO_SUCCESS":
       return {
-        lists: state.lists.filter((list) => list._id !== action.payload),
+        todos: state.todos.filter((todo) => todo._id !== action.payload),
         isFetching: false,
         error: false,
       };
-    case "DELETE_LIST_FAILURE":
+    case "DELETE_TODO_FAILURE":
       return {
         ...state,
         isFetching: false,
@@ -79,4 +79,4 @@ const ListReducer = (state, action) => {
   }
 };
 
-export default ListReducer;
+export default TodoReducer;

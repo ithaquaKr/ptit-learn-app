@@ -108,7 +108,7 @@ const Sidebar = () => {
              <div className="name">{name}</div>
              <div className="mail">{mail}</div>
            </div>
-         <Link to="/">
+         <Link to="/auth">
          <i id="log_out" >
            <ExitToAppIcon onClick = { () => dispatch(logout())}/>
          </i>

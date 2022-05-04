@@ -143,7 +143,6 @@ export default function Newdocs() {
             will send updates occasionally.
           </DialogContentText>
           <TextField
-            autoFocus
             margin="normal"
             id="outlined-basic"
             label="Title"
@@ -153,7 +152,6 @@ export default function Newdocs() {
             onChange={handleChange}
           />
           <TextField
-            autoFocus
             margin="normal"
             id="outlined-textarea"
             label="Description"
@@ -165,7 +163,6 @@ export default function Newdocs() {
             multiline
             />
           <TextField
-            autoFocus
             margin="normal"
             id="outlined-basic"
             label="Year"
@@ -179,10 +176,9 @@ export default function Newdocs() {
             select
             label="Classify"
             name='classify'
-            // value={currency}
+            defaultValue=''
             onChange={handleChange}
             helperText="Please select your document classify"
-            autoFocus
             margin="normal"
             fullWidth
             >
@@ -193,7 +189,6 @@ export default function Newdocs() {
             ))}
             </TextField>
             <TextField
-                autoFocus
                 margin="normal"
                 id="outlined-basic"
                 label="Author"

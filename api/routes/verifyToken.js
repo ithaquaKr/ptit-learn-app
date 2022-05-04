@@ -9,7 +9,9 @@ const verifyToken = (req, res, next) => {
   if (authHeader) {
     const token = authHeader.split(" ")[1];
     jwt.verify(token, process.env.JWT_SEC, (err, user) => {
-      if (err) res.status(403).json("Token is not valid!");
+      if (err){
+        return res.status(403).json("Token is not valid!");
+      }
       req.user = user;
       next();
     });
@@ -24,7 +26,7 @@ const verifyTokenAndAuthorization = (req, res, next) => {
     if (FindUser !== null || req.user.isAdmin) {
       next();
     } else {
-      res.status(403).json("You are not alowed to do that!");
+      return res.status(403).json("You are not alowed to do that!");
     }
   });
 };
@@ -34,7 +36,7 @@ const verifyTokenAndAdmin = (req, res, next) => {
     if (req.user.isAdmin) {
       next();
     } else {
-      res.status(403).json("You are not admin to do that!");
+      return res.status(403).json("You are not admin to do that!");
     }
   });
 };
@@ -49,12 +51,12 @@ const verifyAuthor = (req, res, next) => {
 
       // Check Document with user id
       if (docs === null) {
-        res.status(403).json("You are not Author/Admin to do that!");
+        return res.status(403).json("You are not Author/Admin to do that!");
       } else {
         next();
       }
     } else {
-      res.status(403).json("You are not alowed to do that!");
+      return res.status(403).json("You are not alowed to do that!");
     }
   });
 };
@@ -69,12 +71,12 @@ const verifyTodoAuthor = (req, res, next) => {
 
       // Check Document with user id
       if (todos === null) {
-        res.status(403).json("You are not Author/Admin to do that!");
+        return res.status(403).json("You are not Author/Admin to do that!");
       } else {
         next();
       }
     } else {
-      res.status(403).json("You are not alowed to do that!");
+      return res.status(403).json("You are not alowed to do that!");
     }
   });
 };
