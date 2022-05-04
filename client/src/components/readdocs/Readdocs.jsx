@@ -50,6 +50,7 @@ export default function Readdocs(props) {
         </AppBar>
           <div className="read-document">
             <iframe
+            title={props.dataFromParent.title}
             src={props.dataFromParent.file}
             frameBorder="0"
             scrolling="auto"

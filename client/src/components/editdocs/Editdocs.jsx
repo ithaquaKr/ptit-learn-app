@@ -96,7 +96,6 @@ export default function Editdocs(props) {
             To edit your document, please text in here then click UPDATE button to update your document. 
           </DialogContentText>
           <TextField
-            autoFocus
             margin="normal"
             id="outlined-basic"
             label="Title"
@@ -107,7 +106,6 @@ export default function Editdocs(props) {
             onChange={handleChange}
           />
           <TextField
-            autoFocus
             margin="normal"
             id="outlined-textarea"
             label="Description"
@@ -118,8 +116,7 @@ export default function Editdocs(props) {
             fullWidth
             multiline
             />
-          <TextField
-            autoFocus
+          <TextField 
             margin="normal"
             id="outlined-basic"
             label="Year"
@@ -134,9 +131,9 @@ export default function Editdocs(props) {
             select
             label="Classify"
             name='classify'
+            defaultValue=''
             onChange={handleChange}
             helperText="Please select your document classify"
-            autoFocus
             margin="normal"
             fullWidth
             >
@@ -147,7 +144,6 @@ export default function Editdocs(props) {
             ))}
             </TextField>
             <TextField
-                autoFocus
                 margin="normal"
                 id="outlined-basic"
                 label="Author"

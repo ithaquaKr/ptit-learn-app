@@ -52,18 +52,8 @@ router.delete("/:id", verifyTodoAuthor, async (req, res) => {
     }
 });
 
-//GET
 
-router.get("/find/:id", verifyToken, async (req, res) => {
-  try {
-    const document = await Document.findById(req.params.id);
-    res.status(200).json(document);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-//GET ALL FOR USER
+//GET 
 router.get("/", verifyToken, async (req, res) => {
     try {
       const todos = await Todo.find({verify: req.user.id});
@@ -72,7 +62,5 @@ router.get("/", verifyToken, async (req, res) => {
       res.status(500).json(err);
     }
 });
-
-
 
 module.exports = router;

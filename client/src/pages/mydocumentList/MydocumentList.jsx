@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import "./mydocumentList.scss";
 import { DataGrid } from '@mui/x-data-grid';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -18,16 +20,35 @@ import Readdocs from "../../components/readdocs/Readdocs";
 // Import Edit tab
 import Editdocs from "../../components/editdocs/Editdocs";
 
+// Import Delete tab
+///DeleteAccount Tab
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 export default function MydocumentList() {
   const { documents, dispatch } = useContext(DocumentContext);
   // const verify = JSON.parse(window.localStorage.getItem('user'))._id;
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   useEffect(() => {
     getMyDocuments(dispatch);
   }, [dispatch]);
 
   const handleDelete = (id) => {
     deleteDocument(id, dispatch);
+    setOpen(false);
   };
 
   const columns = [
@@ -68,16 +89,32 @@ export default function MydocumentList() {
           <>
             <Readdocs dataFromParent={params.row} />
             <Infotab dataFromParent={params.row}/>
-            {/* <Link
-              to={{ pathname: "/mydocuments/" + params.row._id, document: params.row }}
-            >
-              <button className="documentListEdit">Edit</button>
-            </Link> */}
             <Editdocs dataFromParent={params.row} />
             <DeleteOutlineIcon
               className="documentListDelete"
-              onClick={() => handleDelete(params.row._id)}
+              onClick={handleClickOpen}
             />
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"Do you want to delete this document?"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                Your action cannot be undone!!
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose}>Disagree</Button>
+                <Button onClick={() => handleDelete(params.row._id)} autoFocus sx={{color: "red"}}>
+                  DELETE
+                </Button>
+              </DialogActions>
+            </Dialog>
           </>
         );
       },
@@ -105,7 +142,8 @@ export default function MydocumentList() {
               rows={documents}
               disableSelectionOnClick 
               columns={columns}
-              pageSize={8}
+              pageSize={15}
+              rowsPerPageOptions={[5,10,15]}
               checkboxSelection
               getRowId={(e) => e._id}
               rowHeight={80} 

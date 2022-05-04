@@ -19,7 +19,7 @@ const Home = () => {
             <div className="home-info-items">
               <span>about: Something .... ?
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                Perspiciatis fuga totam est nesciunt. 
+                Perspiciatis fuga totam est nesciunt.
               </span>
             </div>
         </div>
