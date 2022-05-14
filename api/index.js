@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cors = require('cors');
 dotenv.config();
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
@@ -23,7 +24,7 @@ const connectDB = async () => {
 	}
 };
 connectDB();
-
+app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);

@@ -17,7 +17,7 @@ import {
 export const getTodos = async (dispatch) => {
   dispatch(getTodosStart());
   try {
-    const res = await axios.get("/todo", {
+    const res = await axios.get("/api/todo", {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
@@ -32,7 +32,7 @@ export const getTodos = async (dispatch) => {
 export const createTodo = async (todo, dispatch) => {
   dispatch(createTodoStart());
   try {
-    const res = await axios.post("/todo", todo, {
+    const res = await axios.post("/api/todo", todo, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
@@ -47,7 +47,7 @@ export const createTodo = async (todo, dispatch) => {
 export const updateTodo = async (id, todo, dispatch) => {
   dispatch(updateTodoStart());
   try {
-    const res = await axios.put("/todo/" + id, todo, {
+    const res = await axios.put("/api/todo/" + id, todo, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
@@ -63,7 +63,7 @@ export const updateTodo = async (id, todo, dispatch) => {
 export const deleteTodo = async (id, dispatch) => {
   dispatch(deleteTodoStart());
   try {
-    await axios.delete("/todo/" + id, {
+    await axios.delete("/api/todo/" + id, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
