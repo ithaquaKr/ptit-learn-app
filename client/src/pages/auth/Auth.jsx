@@ -47,7 +47,7 @@ export default function Auth() {
     setAvatar(avatarRef);
     if(email!==""){
       try {
-        await axios.post("auth/register", { email,username, password, avatar });
+        await axios.post("/api/auth/register", { email,username, password, avatar });
         history.push("/");
       } catch (err) {
       }
