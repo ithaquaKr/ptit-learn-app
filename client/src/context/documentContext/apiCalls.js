@@ -17,7 +17,7 @@ import {
 export const getDocuments = async (dispatch) => {
   dispatch(getDocumentsStart());
   try {
-    const res = await axios.get("/documents", {
+    const res = await axios.get("/api/documents", {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
@@ -31,7 +31,7 @@ export const getDocuments = async (dispatch) => {
 export const getMyDocuments = async (dispatch) => {
   dispatch(getDocumentsStart());
   try {
-    const res = await axios.get("/documents/mydocuments", {
+    const res = await axios.get("/api/documents/mydocuments", {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
@@ -47,7 +47,7 @@ export const getMyDocuments = async (dispatch) => {
 export const createDocument = async (document, dispatch) => {
   dispatch(createDocumentStart());
   try {
-    const res = await axios.post("/documents", document, {
+    const res = await axios.post("/api/documents", document, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
@@ -62,7 +62,7 @@ export const createDocument = async (document, dispatch) => {
 export const updateDocument = async (id, document, dispatch) => {
   dispatch(updateDocumentStart());
   try {
-    const res = await axios.put("/documents/" + id, document, {
+    const res = await axios.put("/api/documents/" + id, document, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
@@ -78,7 +78,7 @@ export const updateDocument = async (id, document, dispatch) => {
 export const deleteDocument = async (id, dispatch) => {
   dispatch(deleteDocumentStart());
   try {
-    await axios.delete("/documents/" + id, {
+    await axios.delete("/api/documents/" + id, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },

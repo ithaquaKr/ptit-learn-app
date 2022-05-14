@@ -80,7 +80,7 @@ export default function Account() {
     e.preventDefault();
     if(avatar!==null){
       try {
-        await axios.put("/users/" + Id, {avatar }, {
+        await axios.put("/api/users/" + Id, {avatar }, {
           headers: {
             token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
           },
@@ -104,7 +104,7 @@ export default function Account() {
     setUsername(usernameRef.current.value);
     if(email!==""){
       try {
-        await axios.put("/users/" + Id, { email, username }, {
+        await axios.put("/api/users/" + Id, { email, username }, {
           headers: {
             token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
           },
@@ -138,7 +138,7 @@ export default function Account() {
       setPassword(passwordRef.current.value);
       if(password !== ""){
         try {
-          await axios.put("/users/" + Id, { password }, {
+          await axios.put("/api/users/" + Id, { password }, {
             headers: {
               token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
             },
@@ -156,7 +156,7 @@ export default function Account() {
   const handleDelete = async (e) =>{
     e.preventDefault();
     try {
-      await axios.delete("/users/" + Id, {
+      await axios.delete("/api/users/" + Id, {
         headers: {
           token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
         },

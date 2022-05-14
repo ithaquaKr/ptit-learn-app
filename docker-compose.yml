@@ -1,0 +1,49 @@
+version: "3.9"
+services:
+
+  api:
+    container_name: amilab-api
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 8800:8800
+    env_file: ./api/.env
+    # volumes:
+    #   - ./api:/usr/app
+    networks:
+      - ami-network
+  
+  client:
+    container_name: amilab-client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+    # volumes:
+    #   - ./app/node_modules
+    #   - ./client:/app
+    depends_on:
+      - api
+    networks:
+      - ami-network
+  
+  nginx:
+    restart: always
+    depends_on:
+      - api
+      - client
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
+    networks:
+      - ami-network
+
+networks:
+  ami-network:
+    driver: bridge
