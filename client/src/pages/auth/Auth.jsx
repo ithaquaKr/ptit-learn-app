@@ -77,7 +77,7 @@ export default function Auth() {
             <div className="logo-ami">
               <img src="/images/whatlogo.png" alt="" />
               <div className="logo-title">
-                AMILab
+                AMILab Dev-Server
               </div>
             </div>
             <form className="sign-in-form">
